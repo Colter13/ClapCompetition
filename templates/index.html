@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head><title>Clap Rankings</title></head>
+<body>
+  <h1>Leaderboard</h1>
+  <ul>
+    {% for p in participants %}
+      <li>{{ p.name }} - {{ "%.1f"|format(p.elo) }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Add Match</h2>
+  <form method="post" action="/add_match">
+    <label>Player 1 ID: <input name="p1" /></label><br>
+    <label>Player 2 ID: <input name="p2" /></label><br>
+    <label>Winner ID: <input name="winner" /></label><br>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
