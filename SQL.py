@@ -4,17 +4,19 @@ import sqlite3
 conn = sqlite3.connect('clap_competition.db')
 cursor = conn.cursor()
 
-# Step 1: Create the tables (if not already created)
-cursor.execute("""
+# Create Tables
+cursor.execute('''
 CREATE TABLE IF NOT EXISTS Person (
     PersonID INTEGER PRIMARY KEY,
     FirstName TEXT NOT NULL,
     LastName TEXT NOT NULL,
-    UNIQUE (FirstName, LastName)
-)
-""")
+    Wins INTEGER DEFAULT 0,
+    Losses INTEGER DEFAULT 0,
+    ELO INTEGER DEFAULT 1000
+);
+''')
 
-cursor.execute("""
+cursor.execute('''
 CREATE TABLE IF NOT EXISTS Matches (
     MatchID INTEGER PRIMARY KEY,
     Date TEXT NOT NULL,
@@ -34,17 +36,8 @@ CREATE TABLE IF NOT EXISTS Matches (
     FOREIGN KEY (Player2HypemanID) REFERENCES Person(PersonID),
     FOREIGN KEY (WinnerID) REFERENCES Person(PersonID),
     FOREIGN KEY (LoserID) REFERENCES Person(PersonID)
-)
-""")
-
-# Step 2: Insert test people
-cursor.execute("INSERT or IGNORE INTO Person (FirstName, LastName) VALUES (?, ?)", ("Colter", "Radke"))
-cursor.execute("INSERT or IGNORE INTO Person (FirstName, LastName) VALUES (?, ?)", ("Simon", "Oliver"))
-
-# Get their IDs
-cursor.execute("SELECT * FROM Person")
-taylor_id = cursor.fetchall()
-print(taylor_id)
+);
+''')
 
 # Commit and close
 conn.commit()
