@@ -4,6 +4,15 @@ import sqlite3
 conn = sqlite3.connect('clap_competition.db')
 cursor = conn.cursor()
 
+# Drop Tables
+cursor.execute('''
+DROP TABLE IF EXISTS Person               
+''')
+
+cursor.execute('''
+DROP TABLE IF EXISTS Matches               
+''')
+
 # Create Tables
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS Person (
@@ -20,20 +29,20 @@ cursor.execute('''
 CREATE TABLE IF NOT EXISTS Matches (
     MatchID INTEGER PRIMARY KEY,
     Date TEXT NOT NULL,
-    Player1ID INTEGER NOT NULL,
-    Player2ID INTEGER NOT NULL,
-    Player1CoachID INTEGER NOT NULL,
-    Player2CoachID INTEGER NOT NULL,
-    Player1HypemanID INTEGER,
-    Player2HypemanID INTEGER,
+    Competitor1ID INTEGER NOT NULL,
+    Competitor2ID INTEGER NOT NULL,
+    Coach1ID INTEGER NOT NULL,
+    Coach2ID INTEGER NOT NULL,
+    Hypeman1ID INTEGER,
+    Hypeman2ID INTEGER,
     WinnerID INTEGER NOT NULL,
     LoserID INTEGER NOT NULL,
-    FOREIGN KEY (Player1ID) REFERENCES Person(PersonID),
-    FOREIGN KEY (Player2ID) REFERENCES Person(PersonID),
-    FOREIGN KEY (Player1CoachID) REFERENCES Person(PersonID),
-    FOREIGN KEY (Player2CoachID) REFERENCES Person(PersonID),
-    FOREIGN KEY (Player1HypemanID) REFERENCES Person(PersonID),
-    FOREIGN KEY (Player2HypemanID) REFERENCES Person(PersonID),
+    FOREIGN KEY (Competitor1ID) REFERENCES Person(PersonID),
+    FOREIGN KEY (Competitor2ID) REFERENCES Person(PersonID),
+    FOREIGN KEY (Coach1ID) REFERENCES Person(PersonID),
+    FOREIGN KEY (Coach2ID) REFERENCES Person(PersonID),
+    FOREIGN KEY (Hypeman1ID) REFERENCES Person(PersonID),
+    FOREIGN KEY (Hypeman2ID) REFERENCES Person(PersonID),
     FOREIGN KEY (WinnerID) REFERENCES Person(PersonID),
     FOREIGN KEY (LoserID) REFERENCES Person(PersonID)
 );
