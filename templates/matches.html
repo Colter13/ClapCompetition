@@ -1,34 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Match History</title>
 </head>
-<body>
-
+<body style="background-color: #F5F7DC;">
     <h1>Match History</h1>
-
-    <table>
+    <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
+                <th>Date</th>
                 <th>Winner</th>
                 <th>Loser</th>
-                <th>Match Date</th>
+                <th>Coach (Winner)</th>
+                <th>Coach (Loser)</th>
+                <th>Hypeman (Winner)</th>
+                <th>Hypeman (Loser)</th>
             </tr>
         </thead>
         <tbody>
             {% for match in matches %}
             <tr>
-                <td>{{ match[0] }}</td>
-                <td>{{ match[1] }}</td>
-                <td>{{ match[2] }}</td>
+                <td>{{ match.date }}</td>
+                <td>{{ match.winner }}</td>
+                <td>{{ match.loser }}</td>
+                <td>{{ match.coach_winner }}</td>
+                <td>{{ match.coach_loser }}</td>
+                <td>{{ match.hypeman_winner or '—' }}</td>
+                <td>{{ match.hypeman_loser or '—' }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
-    <a href="/">Go Back</a>
-
 </body>
 </html>

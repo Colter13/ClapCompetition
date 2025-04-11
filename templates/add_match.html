@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Match</title>
+</head>
+<body style="background-color: #F5F7DC;">
+    <h1>Add a New Match</h1>
+    <form method="POST" action="/add_match">
+        <label>Date:</label><br>
+        <input type="date" name="date" required><br><br>
+
+        <label>Winner:</label><br>
+        <input type="text" name="winner" required><br><br>
+
+        <label>Loser:</label><br>
+        <input type="text" name="loser" required><br><br>
+
+        <label>Coach (Winner):</label><br>
+        <input type="text" name="coach_winner"><br><br>
+
+        <label>Coach (Loser):</label><br>
+        <input type="text" name="coach_loser"><br><br>
+
+        <label>Hypeman (Winner):</label><br>
+        <input type="text" name="hypeman_winner"><br><br>
+
+        <label>Hypeman (Loser):</label><br>
+        <input type="text" name="hypeman_loser"><br><br>
+
+        <input type="submit" value="Submit Match">
+    </form>
+</body>
+</html>

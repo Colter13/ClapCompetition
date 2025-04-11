@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>People</title>
+</head>
+<body style="background-color: #F5F7DC;">
+    <h2 style="text-align: center;">Rankings</h2>
+    <table border="1" style="margin: 0 auto; border-collapse: collapse;">
+        <thead style="background-color: #6097d7">
+            <tr>
+                <th>Name</th>
+                <th>ELO</th>
+                <th>Record</th>
+            </tr>
+        </thead>
+        <tbody style="text-align: center;">
+            {% for first, last, wins, losses, elo in competitors %}
+            <tr>
+                <td style="min-width: 160px;">{{ first }} {{last}}</td>
+                <td style="min-width: 120px;">{{ elo }}</td>
+                <td style="min-width: 120px;">{{ wins }}-{{ losses }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
