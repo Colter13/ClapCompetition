@@ -10,22 +10,28 @@
         <input type="date" name="date" required><br><br>
 
         <label>Winner:</label><br>
-        <input type="text" name="winner" required><br><br>
+        <input list="people" name="winner" required><br><br>
 
         <label>Loser:</label><br>
-        <input type="text" name="loser" required><br><br>
+        <input list="people" name="loser" required><br><br>
 
         <label>Coach (Winner):</label><br>
-        <input type="text" name="coach_winner"><br><br>
+        <input list="people" name="coach_winner"><br><br>
 
         <label>Coach (Loser):</label><br>
-        <input type="text" name="coach_loser"><br><br>
+        <input list="people" name="coach_loser"><br><br>
 
         <label>Hypeman (Winner):</label><br>
-        <input type="text" name="hypeman_winner"><br><br>
+        <input list="people" name="hypeman_winner"><br><br>
 
         <label>Hypeman (Loser):</label><br>
-        <input type="text" name="hypeman_loser"><br><br>
+        <input list="people" name="hypeman_loser"><br><br>
+
+        <datalist id="people">
+            {% for person in people %}
+                <option value="{{ person[0] }} {{ person[1] }}">
+            {% endfor %}
+        </datalist>
 
         <input type="submit" value="Submit Match">
     </form>

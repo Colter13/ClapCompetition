@@ -9,6 +9,14 @@ def home():
 
 @app.route("/add_match", methods=["GET", "POST"])
 def add_match():
+    def get_people():
+        conn = sqlite3.connect('clap_competition.db')
+        cursor = conn.cursor()
+        cursor.execute("SELECT FirstName, LastName FROM Person")
+        people = cursor.fetchall()
+        conn.close()
+        return people
+
     if request.method == "POST":
         date = request.form["date"]
         winner = request.form["winner"]
@@ -78,7 +86,7 @@ def add_match():
 
         return redirect(url_for("add_match"))
 
-    return render_template("add_match.html")
+    return render_template("add_match.html", people=get_people())
 
 @app.route("/rankings")
 def list_rankings():

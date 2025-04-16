@@ -17,7 +17,7 @@
             {% for first, last, wins, losses, elo in competitors %}
             <tr>
                 <td style="min-width: 160px;">{{ first }} {{last}}</td>
-                <td style="min-width: 120px;">{{ elo }}</td>
+                <td style="min-width: 120px;">{{ '%.2f' % elo }}</td>
                 <td style="min-width: 120px;">{{ wins }}-{{ losses }}</td>
             </tr>
             {% endfor %}
