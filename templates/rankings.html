@@ -4,21 +4,28 @@
     <title>People</title>
 </head>
 <body style="background-color: #F5F7DC;">
+
+    <div style="text-align: left; padding: 10px;">
+        <a href="{{ url_for('home') }}" style="font-size: 18px;">Home</a>
+    </div>
+
     <h2 style="text-align: center;">Rankings</h2>
     <table border="1" style="margin: 0 auto; border-collapse: collapse;">
         <thead style="background-color: #6097d7">
             <tr>
+                <th>Rank</th>
                 <th>Name</th>
                 <th>ELO</th>
                 <th>Record</th>
             </tr>
         </thead>
         <tbody style="text-align: center;">
-            {% for first, last, wins, losses, elo in competitors %}
+            {% for competitor in competitors %}
             <tr>
-                <td style="min-width: 160px;">{{ first }} {{last}}</td>
-                <td style="min-width: 120px;">{{ '%.2f' % elo }}</td>
-                <td style="min-width: 120px;">{{ wins }}-{{ losses }}</td>
+                <td style="min-width: 80px;">{{ competitor[0] }}</td>
+                <td style="min-width: 200px;">{{ competitor[1] }} {{ competitor[2] }}</td>
+                <td style="min-width: 120px;">{{ '%.2f' % competitor[5] }}</td>
+                <td style="min-width: 120px;">{{ competitor[3] }}-{{ competitor[4] }}</td>
             </tr>
             {% endfor %}
         </tbody>

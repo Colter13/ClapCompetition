@@ -4,8 +4,16 @@
     <title>Add Match</title>
 </head>
 <body style="background-color: #F5F7DC; text-align: center;">
+
+    <div style="text-align: left; padding: 10px;">
+        <a href="{{ url_for('home') }}" style="font-size: 18px;">Home</a>
+    </div>
+
     <h1>Add a New Match</h1>
+
     <form method="POST" action="/add_match">
+        <input type="hidden" name="password" value="{{ request.form.get('password') }}">
+
         <label>Date:</label><br>
         <input type="date" name="date" required><br><br>
 
