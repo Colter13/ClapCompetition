@@ -5,6 +5,7 @@
 </head>
 <body style="background-color: #F5F7DC;">
     <h1>Match History</h1>
+    
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
@@ -19,14 +20,14 @@
         </thead>
         <tbody>
             {% for match in matches %}
-            <tr>
-                <td>{{ match.date }}</td>
-                <td>{{ match.winner }}</td>
-                <td>{{ match.loser }}</td>
-                <td>{{ match.coach_winner }}</td>
-                <td>{{ match.coach_loser }}</td>
-                <td>{{ match.hypeman_winner or '—' }}</td>
-                <td>{{ match.hypeman_loser or '—' }}</td>
+            <tr style="text-align: center;">
+                <td>{{ match[0] }}</td>  <!-- Date -->
+                <td>{{ match[1] }}</td>  <!-- WinnerName -->
+                <td>{{ match[2] }}</td>  <!-- LoserName -->
+                <td>{{ match[3] or '—'}}</td>  <!-- CoachWinnerName -->
+                <td>{{ match[4] or '—'}}</td>  <!-- CoachLoserName -->
+                <td>{{ match[5] or '—' }}</td>  <!-- HypemanWinnerName -->
+                <td>{{ match[6] or '—' }}</td>  <!-- HypemanLoserName -->
             </tr>
             {% endfor %}
         </tbody>

@@ -99,10 +99,25 @@ def list_matches():
     conn = sqlite3.connect('clap_competition.db')
     cursor = conn.cursor()
     cursor.execute('''
-                SELECT Date, WinnerID, LoserID, CoachWinnerID, CoachLoserID, HypemanWinnerID, HypemanLoserID FROM Matches 
-                ORDER BY Date Desc
+                SELECT 
+                    m.Date, 
+                    pw.FirstName || ' ' || pw.LastName AS WinnerName,
+                    pl.FirstName || ' ' || pl.LastName AS LoserName,
+                    pcw.FirstName || ' ' || pcw.LastName AS CoachWinnerName,
+                    pcl.FirstName || ' ' || pcl.LastName AS CoachLoserName,
+                    phw.FirstName || ' ' || phw.LastName AS HypemanWinnerName,
+                    phl.FirstName || ' ' || phl.LastName AS HypemanLoserName
+                FROM Matches m
+                LEFT JOIN Person pw ON m.WinnerID = pw.PersonID
+                LEFT JOIN Person pl ON m.LoserID = pl.PersonID
+                LEFT JOIN Person pcw ON m.CoachWinnerID = pcw.PersonID
+                LEFT JOIN Person pcl ON m.CoachLoserID = pcl.PersonID
+                LEFT JOIN Person phw ON m.HypemanWinnerID = phw.PersonID
+                LEFT JOIN Person phl ON m.HypemanLoserID = phl.PersonID
+                ORDER BY m.Date DESC;
                 ''')
-    competitors = cursor.fetchall()
+    matches = cursor.fetchall()
+    print(matches)
     conn.close()
 
     return render_template("matches.html", matches=matches)
