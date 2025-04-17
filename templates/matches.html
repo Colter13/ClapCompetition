@@ -9,33 +9,36 @@
         <a href="{{ url_for('home') }}" style="font-size: 18px;">Home</a>
     </div>
 
-    <h1>Match History</h1>
+    <h1 style="text-align: center;">Match History</h1>
 
-    <table border="1" cellpadding="8" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Winner</th>
-                <th>Loser</th>
-                <th>Coach (Winner)</th>
-                <th>Coach (Loser)</th>
-                <th>Hypeman (Winner)</th>
-                <th>Hypeman (Loser)</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for match in matches %}
-            <tr style="text-align: center;">
-                <td>{{ match[0] }}</td>  <!-- Date -->
-                <td>{{ match[1] }}</td>  <!-- WinnerName -->
-                <td>{{ match[2] }}</td>  <!-- LoserName -->
-                <td>{{ match[3] or '—'}}</td>  <!-- CoachWinnerName -->
-                <td>{{ match[4] or '—'}}</td>  <!-- CoachLoserName -->
-                <td>{{ match[5] or '—' }}</td>  <!-- HypemanWinnerName -->
-                <td>{{ match[6] or '—' }}</td>  <!-- HypemanLoserName -->
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div style="text-align: center;">
+        <table border="1" cellpadding="8" cellspacing="0" style="margin: 0 auto;">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Winner</th>
+                    <th>Loser</th>
+                    <th>Coach (Winner)</th>
+                    <th>Coach (Loser)</th>
+                    <th>Hypeman (Winner)</th>
+                    <th>Hypeman (Loser)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for match in matches %}
+                <tr style="text-align: center;">
+                    <td>{{ match[0] }}</td>
+                    <td>{{ match[1] }}</td>
+                    <td>{{ match[2] }}</td>
+                    <td>{{ match[3] or '—'}}</td>
+                    <td>{{ match[4] or '—'}}</td>
+                    <td>{{ match[5] or '—' }}</td>
+                    <td>{{ match[6] or '—' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 </body>
 </html>
