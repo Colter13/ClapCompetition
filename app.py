@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
+import shutil
+from datetime import datetime
+import os
 
 # helper functions
 def get_people():
@@ -61,6 +64,13 @@ def add_match():
     hype_winner_id = get_or_create_person(hypeman_winner, cursor)
     hype_loser_id = get_or_create_person(hypeman_loser, cursor)
 
+    # store backup of clap competition data
+    os.makedirs("backups", exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    backup_filename = os.path.join("backups", f"clap_competition_backup_{timestamp}.db")
+    shutil.copyfile("clap_competition.db", backup_filename)
+    print(f"Backup created: {backup_filename}")
+    
     cursor.execute("""
         INSERT INTO Matches (
             Date,
